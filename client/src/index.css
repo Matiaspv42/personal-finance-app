@@ -3,7 +3,7 @@ body{
     color: #F6FBF8;
 }
 
-.App a{
+.App .navbar a{
     text-decoration: none;
     color: #F6FBF8;
 }

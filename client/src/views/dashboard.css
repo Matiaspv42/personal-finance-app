@@ -1,0 +1,34 @@
+/* *{
+    border: red 1px solid;
+} */
+.dashboard{
+    background-color: #F6FBF8;
+    border-radius: 10px;
+    height: 90vh;
+    color: black; 
+    display: flex;
+    flex-direction: row;
+}
+
+.dashboard ul{
+    list-style: none;
+    margin: none;
+    padding: 0;
+    text-align: center;
+}
+.dashboard ul li {
+    margin: 1rem 0;
+}
+
+.dashboard ul li > *{
+    text-decoration: none;
+    color: black;
+}
+
+.dashboard .sidebar{
+    width: 15%;
+    border-right: 1px solid #c4c4c4;
+}
+.dashboard .innerContentDashboard{
+    width: 85%;
+}
