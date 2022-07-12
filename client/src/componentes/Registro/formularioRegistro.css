@@ -1,0 +1,9 @@
+.RegisterForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.RegisterForm>*{
+    display: flex;
+    justify-content: space-between;
+}

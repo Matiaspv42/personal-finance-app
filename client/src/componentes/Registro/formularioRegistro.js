@@ -1,3 +1,4 @@
+import './formularioRegistro.css'
 export default function FormularioDeRegistro(){
     return(
         <div className="RegisterForm">
@@ -18,7 +19,7 @@ export default function FormularioDeRegistro(){
                 <input name='passVerify' />
             </div>
             <div className='buttonRegisterForm'>
-                <button>Registrarse</button>
+                <button className='registrationButton'>Registrarse</button>
             </div>
        </div>
     )
