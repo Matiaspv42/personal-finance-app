@@ -1,3 +1,5 @@
+import './formularioLogin.css'
+
 export default function FormularioDeLogin(){
     return(
         <div className="LoginForm">
