@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { DateTimePicker, KeyboardDateTimePicker } from "@material-ui/pickers";
+// import { DateTimePicker, KeyboardDateTimePicker } from "@material-ui/pickers";
 import { FormGroup, FormControlLabel, Checkbox, Button, Box } from "@mui/material";
 import { DataGrid } from '@mui/x-data-grid';
+import TextField from '@mui/material/TextField';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
 
 const columns = [
@@ -51,6 +55,7 @@ const columns = [
 
 export default function Recordatorios(){
     const [selectedDate, handleDateChange] = useState(new Date());
+    const [value, setValue] = React.useState(new Date());
     const [checked, setChecked] = React.useState(true);
     const handleChange = (event) => {
       setChecked(event.target.checked);
@@ -58,7 +63,7 @@ export default function Recordatorios(){
     return(
         <div className="recordatorios">
             <div className="formRecodatorios">
-            <KeyboardDateTimePicker
+            {/* <KeyboardDateTimePicker
                 variant="inline"
                 ampm={false}
                 label="Fecha del recordatorio"
@@ -67,6 +72,14 @@ export default function Recordatorios(){
                 onError={console.log}
                 disablePast
                 format="dd/MM/yyyy HH:mm"
+            /> */}
+            <DateTimePicker
+                renderInput={(props) => <TextField {...props} />}
+                label="Fecha para tu recordatorio"
+                value={value}
+                onChange={(newValue) => {
+                setValue(newValue);
+                }}
             />
             <FormGroup>
                 <FormControlLabel control={<Checkbox
@@ -74,13 +87,13 @@ export default function Recordatorios(){
                 color="success"
                 onChange={handleChange}
                 inputProps={{ 'aria-label': 'controlled' }}
-                />} label="Whatsapp" />
+                />} label="Email" />
                 <FormControlLabel control={<Checkbox
                 checked={checked}
                 color="success"
                 onChange={handleChange}
                 inputProps={{ 'aria-label': 'controlled' }}
-                />} label="Email" />
+                />} label="Notificación" />
             </FormGroup>
             <Button variant="contained">Enviar</Button>
             </div>
