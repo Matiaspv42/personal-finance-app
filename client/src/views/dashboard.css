@@ -2,7 +2,7 @@
     border: red 1px solid;
 } */
 .dashboard{
-    background-color: #F6FBF8;
+    background-color: #E7EBF0;
     border-radius: 10px;
     height: 90vh;
     color: black; 
@@ -31,4 +31,5 @@
 }
 .dashboard .innerContentDashboard{
     width: 85%;
+    padding: 15px;
 }

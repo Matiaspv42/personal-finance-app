@@ -1,28 +1,23 @@
 import { NavLink } from "react-router-dom"
-
+import './sidebar.css'
 
 export default function Sidebar(){
-
     return(
-             <ul>
-                <li>
+             <div className="sideBar">
                     <NavLink to='resumen'
-                    style={({ isActive }) => ({ color: isActive ? "none" : "blue" })}
+                     style={({ isActive }) => ({ backgroundColor: isActive ? "#F6FBF8" : "#E7EBF0" })}
                     >Resumen</NavLink>
-                </li>
-                <li>
+    
                     <NavLink to='recordatorios'
-                    style={({ isActive }) => ({ color: isActive ? "none" : "blue" })}
+                    style={({ isActive }) => ({ backgroundColor: isActive ? "#F6FBF8" : "#E7EBF0" })}
                     >Recordatorios</NavLink>
-                </li>
-                <li>
+    
                     <NavLink to='historial'
-                    style={({ isActive }) => ({ color: isActive ? "none" : "blue" })}
+                    style={({ isActive }) => ({ backgroundColor: isActive ? "#F6FBF8" : "#E7EBF0" })}
                     >Historial</NavLink>
-                </li>
                 {/* <li>
                     <Link to='algo'>Algo</Link>
                 </li> */}
-            </ul>
+            </div>
     )
 }

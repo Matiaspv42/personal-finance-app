@@ -1,0 +1,13 @@
+/* .ResumenContent{
+    margin: 15px;
+    display: flex;
+} */
+.DoughnutCard{
+    border: 1px red solid;
+    /* width: 30%; */
+    padding: 10px;
+    /* border-radius: 50px; */
+    background: #F6FBF8;
+    /* box-shadow:  7px 7px 14px #a2a6a4,
+                 -7px -7px 14px #ffffff; */
+}

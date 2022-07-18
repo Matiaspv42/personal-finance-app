@@ -1,0 +1,12 @@
+.sideBar{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    /* border: 1px red solid; */
+}
+
+.sideBar a{
+    padding: 5px 0;
+    text-decoration: none;
+    text-align: center;
+}

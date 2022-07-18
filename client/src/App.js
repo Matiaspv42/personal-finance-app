@@ -10,21 +10,21 @@ import Recordatorios from './componentes/Dashboard/Recordatorios';
 import Historial from './componentes/Dashboard/Historial';
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Navbar/>
-        <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='login' element={<Login/>} />
-          <Route path='register' element={<Registro/>} />
-          <Route path='dashboard' element={<Dashboard/>} >
-            <Route path='resumen' element={<Resumen/>} />
-            <Route path='recordatorios' element={<Recordatorios/>} /> 
-            <Route path='historial' element={<Historial/>} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+        <div className="App">
+        <BrowserRouter>
+          <Navbar/>
+          <Routes>
+            <Route path='/' element={<Home/>} />
+            <Route path='login' element={<Login/>} />
+            <Route path='register' element={<Registro/>} />
+            <Route path='dashboard' element={<Dashboard/>} >
+              <Route path='resumen' element={<Resumen/>} />
+              <Route path='recordatorios' element={<Recordatorios/>} /> 
+              <Route path='historial' element={<Historial/>} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
   );
 }
 

@@ -1,6 +1,7 @@
 import './dashboard.css'
 
 import Sidebar from "../componentes/Dashboard/Sidebar"
+import { Box } from '@mui/material'
 import { Outlet } from 'react-router-dom'
 
 export default function Dashboard(){
@@ -10,9 +11,10 @@ export default function Dashboard(){
                 <Sidebar/>
             </div>
             <div className='innerContentDashboard'>
-                <Outlet/>
+                <Box>
+                    <Outlet/>
+                </Box>
             </div>
-                
         </div>
     )
 }
