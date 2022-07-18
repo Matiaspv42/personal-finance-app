@@ -7,6 +7,10 @@ export default function Sidebar(){
                     <NavLink to='resumen'
                      style={({ isActive }) => ({ backgroundColor: isActive ? "#F6FBF8" : "#E7EBF0" })}
                     >Resumen</NavLink>
+
+                    <NavLink to='chauchera'
+                    style={({ isActive }) => ({ backgroundColor: isActive ? "#F6FBF8" : "#E7EBF0" })}
+                    >Chauchera</NavLink>
     
                     <NavLink to='recordatorios'
                     style={({ isActive }) => ({ backgroundColor: isActive ? "#F6FBF8" : "#E7EBF0" })}
@@ -15,6 +19,8 @@ export default function Sidebar(){
                     <NavLink to='historial'
                     style={({ isActive }) => ({ backgroundColor: isActive ? "#F6FBF8" : "#E7EBF0" })}
                     >Historial</NavLink>
+
+                    
                 {/* <li>
                     <Link to='algo'>Algo</Link>
                 </li> */}

@@ -8,6 +8,7 @@ import Navbar from './componentes/Navbar';
 import Resumen from './componentes/Dashboard/Resumen';
 import Recordatorios from './componentes/Dashboard/Recordatorios';
 import Historial from './componentes/Dashboard/Historial';
+import Chauchera from './componentes/Dashboard/Chauchera'
 function App() {
   return (
         <div className="App">
@@ -19,6 +20,7 @@ function App() {
             <Route path='register' element={<Registro/>} />
             <Route path='dashboard' element={<Dashboard/>} >
               <Route path='resumen' element={<Resumen/>} />
+              <Route path='chauchera' element={<Chauchera/>} />
               <Route path='recordatorios' element={<Recordatorios/>} /> 
               <Route path='historial' element={<Historial/>} />
             </Route>

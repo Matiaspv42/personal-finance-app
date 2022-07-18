@@ -28,6 +28,7 @@
 .dashboard .sidebar{
     width: 15%;
     border-right: 1px solid #c4c4c4;
+    /* background-color: #F6FBF8; */
 }
 .dashboard .innerContentDashboard{
     width: 85%;
