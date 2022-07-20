@@ -3,10 +3,40 @@
     display: flex;
 } */
 .DoughnutCard{
-    border: 1px red solid;
+    /* border: 1px red solid; */
     /* width: 30%; */
     padding: 10px;
-    /* border-radius: 50px; */
+    border-radius: 50px;
+    background: #F6FBF8;
+    /* box-shadow:  7px 7px 14px #a2a6a4,
+                 -7px -7px 14px #ffffff; */
+}
+
+.UltimasTransacciones{
+     /* border: 1px red solid; */
+    /* width: 30%; */
+    padding: 20px;
+    border-radius: 50px;
+    background: #F6FBF8;
+    /* box-shadow:  7px 7px 14px #a2a6a4,
+                 -7px -7px 14px #ffffff; */
+}
+
+.AreaChartCard{
+    /* border: 1px red solid; */
+    /* width: 30%; */
+    padding: 20px;
+    border-radius: 50px;
+    background: #F6FBF8;
+    /* box-shadow:  7px 7px 14px #a2a6a4,
+                 -7px -7px 14px #ffffff; */
+}
+
+.RadarChartCard{
+    /* border: 1px red solid; */
+    /* width: 30%; */
+    padding: 10px;
+    border-radius: 50px;
     background: #F6FBF8;
     /* box-shadow:  7px 7px 14px #a2a6a4,
                  -7px -7px 14px #ffffff; */

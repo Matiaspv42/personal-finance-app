@@ -35,8 +35,23 @@ export default function Doughtnut(){
         maintainAspecRatio: false,
         // responsive: true,
         plugins: {
-          legend: {
+          title:{
             display: true,
+            text: 'Chauchera Mensual',
+            font: {
+              size:34
+            },
+            padding:{
+                top:30,
+                bottom:30
+            },
+            responsive:true,
+            animation:{
+                animateScale: true,
+                          }
+          },
+          legend: {
+            display: false,
             position: "bottom"
           },
         },
