@@ -1,8 +1,14 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import Button from '@mui/material/Button';
 import './navbar.css'
+import AuthContext from "../AuthContext";
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+
+
 export default function Navbar(){
+    const {token} = useContext(AuthContext)
+
     return(
         <nav className="navbar">
             <div className="logo">

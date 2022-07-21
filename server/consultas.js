@@ -1,11 +1,11 @@
 const {Pool} = require('pg')
 
 const config = {
-    user,
-    host,
-    password,
-    port,
-    database
+    user: 'postgres',
+    host:'localhost',
+    password:'postgres',
+    port:5432,
+    database:'chauchera',
 }
 
 const pool = new Pool(config)
@@ -18,8 +18,9 @@ const findUser = async (user) =>{
             values: [email]
         }
         const {rows} = await pool.query(query)
-        if(rows.length > 0) rows;
-        return {error: "Usuario ya existe"}
+        console.log(rows)
+        if(rows.length > 0) return rows;
+        return false
     } catch (error) {
         
     }
@@ -27,13 +28,16 @@ const findUser = async (user) =>{
 
 const registerUser = async (user) =>{
     const {email, password} = user 
+    console.log('este es el mail y la pw recibida en la query ' + email, password)
     try {
         const query = {
             text: "INSERT into usuarios(email, password) values ($1, $2)", 
             values: [email, password]
         }
+        const result = await pool.query(query)
+        console.log(result)
     } catch (error) {
-        
+        console.log(error)
     }
 }
 

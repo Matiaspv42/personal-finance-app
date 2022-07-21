@@ -14,7 +14,7 @@ import ProtectedRoute from './ProtectedRoute'
 import AuthContext from './AuthContext';
 
 function App() {
-  const [token, setToken] = useState('123');
+  const [token, setToken] = useState('');
   const [login, setLogin] = useState(false)
 
   const [user, setUser] = useState({});
@@ -28,7 +28,7 @@ function App() {
               <Route path='/' element={<Home/>} />
               <Route path='login' element={<Login/>} />
               <Route path='register' element={<Registro/>} />
-              <Route element={<ProtectedRoute user={user} />}>
+              <Route element={<ProtectedRoute token={token} />}>
                 <Route path='dashboard' element={<Dashboard/>} >
                   <Route path='resumen' element={<Resumen/>} />
                   <Route path='chauchera' element={<Chauchera/>} />

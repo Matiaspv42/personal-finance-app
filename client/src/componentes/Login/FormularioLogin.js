@@ -2,6 +2,7 @@ import './formularioLogin.css'
 import axios from 'axios'
 import { useState, useContext } from 'react'
 import AuthContext from "../../AuthContext";
+import { Navigate } from 'react-router-dom';
 
 export default function FormularioDeLogin(){
     const {token, setToken, login, setLogin, user, setUser} = useContext(AuthContext)
@@ -9,12 +10,15 @@ export default function FormularioDeLogin(){
     const handleLogin = async() => {
         try {
             const res = await axios.post("http://localhost:3001/login", user)
+            console.log(res)
             setToken(res.data.token)
             setLogin(true)
             localStorage.setItem('token', 'Bearer '+ res.data.token)
+            console.log(token)
             alert(`Bienvenido`)
+
         } catch (error) {
-            alert('algo salió mal :(')
+            alert('Hubo un error con tu email y/o contraseña, porfavor verificalas')
             console.log(error)
         }
     }
@@ -37,6 +41,10 @@ export default function FormularioDeLogin(){
             <div className="buttonLoginForm">
                 <button onClick={handleLogin}>Iniciar Sesión</button>
             </div>
+            {token && (
+            <Navigate to="/dashboard/resumen" replace={true} />
+
+            )}
         </div>
     )
 }
