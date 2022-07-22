@@ -14,7 +14,8 @@ app.use(cors())
 app.use(express.json())
 
 const {findUserbyId, registerUser, findUser, depositarDinero, transferenciaDinero, getTransferencias, registerRecordatorio, getRecordatorios, getRecordatoriosLimitados, gastoDinero, getGastosLimitados} = require('./consultas')
-const { restart } = require('nodemon')
+const {enviarMail} = require('./recordatorios')
+
 
 const port = 3001
 
@@ -41,15 +42,17 @@ app.post('/usuarios', async (req,res)=>{
         const {email, password} = req.body
         console.log(email, password)
         const isUser = await findUser({email})
-        if(isUser){
+        console.log(isUser)
+        if(!isUser){
             const salt = await bcrypt.genSalt()
             const hashed = await bcrypt.hash(password, salt)
             const user = {email, password: hashed}
             console.log(user)
             await registerUser(user)
             res.send('registrado')
+        }else{
+            return res.status(403).send('Usuario ya existe')
         }
-        return res.status(403).send('Usuario ya existe')
     } catch (error) {
         res.status(error.code).send(error)
     }
@@ -131,13 +134,18 @@ app.get("/recordatorios", async (req,res)=>{
     }
 })
 
+
 app.post("/recordatorios", async(req,res)=>{
     try {
         const {recordatorioData, user, fecha} = req.body
-        console.log(fecha)
         const recordatorios = {fecha , descripcion: recordatorioData.descripcion, id_usuario: user.id, titulo: recordatorioData.titulo}
         const respuesta = await registerRecordatorio(recordatorios)
+
         if(respuesta){
+            // preparar data para enviar mail
+            const dataUsuario = await findUserbyId({email: user.id})
+            const dataMail = {toEmail: dataUsuario[0].email, descripcion: recordatorioData.descripcion, titulo: recordatorioData.titulo, fecha }
+            await enviarMail(dataMail)
             res.status(200).send('recordatorio agregado')
         }
     } catch (error) {

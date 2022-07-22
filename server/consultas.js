@@ -97,10 +97,10 @@ const depositarDinero = async (transferencia) =>{
 }
 
 const transferenciaDinero = async (transferencia) =>{
+    console.log(transferencia)
     const {emisor, receptor, dinero, id} = transferencia
-    console.log(emisor, receptor)
     const agregarTransferencia ={
-        text: "INSERT INTO transsacciones (categoria_emisora, categoria_destino, cantidad_dinero, id, fecha) values ($1, $2, $3, $4 ,NOW())",
+        text: "INSERT INTO transsacciones (categoria_emisora, categoria_destino, cantidad_dinero, id_usuario, fecha) values ($1, $2, $3, $4 ,NOW())",
         values: [emisor, receptor, dinero, id]
     };
     const actualizarDatosEmisor = {
