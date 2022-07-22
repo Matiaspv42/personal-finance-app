@@ -10,6 +10,7 @@ export default function FormularioDeLogin(){
     const handleLogin = async() => {
         try {
             const res = await axios.post("http://localhost:3001/login", user)
+            console.log(res)
             setToken(res.data.token)
             setLogin(true)
             user['id'] = res.data.id

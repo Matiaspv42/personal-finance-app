@@ -15,4 +15,10 @@ alter table transsacciones add categoria_emisora varchar(20) default null;
 
 -- se crea tabla recordatorios
 
-create table recordatorios (id serial, fecha date, descripcion varchar(150), id_usuario int, foreign key(id_usuario) references usuarios(id));
+create table recordatorios (id serial, fecha timestamptz, descripcion varchar(150), id_usuario int, foreign key(id_usuario) references usuarios(id));
+
+alter table recordatorios add titulo varchar(50);
+
+-- se crea tabla gastos
+create table gastos (id serial, fecha timestamptz, titulo varchar(150), chauchera_gastada varchar(15) ,id_usuario int, foreign key(id_usuario) references usuarios(id));
+alter table gastos add dinero int;

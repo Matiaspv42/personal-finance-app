@@ -1,7 +1,8 @@
 import { Box } from "@mui/system"
 import { DataGrid } from "@mui/x-data-grid"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import AuthContext from "../../../AuthContext";
 
 const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -57,6 +58,8 @@ const columns = [
   ];
 
 export default function ChaucheraHistorial(){
+  const {user} = useContext(AuthContext)
+  console.log(user)
   const [transferenciasData, setData] = useState([])
     // const getTransferencias = async () =>{
     //   const data = await axios.get("http://localhost:3001/transferencias")
@@ -66,18 +69,18 @@ export default function ChaucheraHistorial(){
     //   console.log(transferenciasData)
     // }
     useEffect( async () => { 
-      const data = await axios.get("http://localhost:3001/transferencias")
+      const data = await axios.get(`http://localhost:3001/transferencias?id=${user.id}`)
       setData([...data.data])
     },[])
 
     console.log(transferenciasData)
     return(
-        <Box sx={{ height: 400, width: '100%' }}>
+        <Box sx={{ height: 290, width: '100%' }}>
             <DataGrid
                 rows={transferenciasData}
                 columns={columns}
-                pageSize={transferenciasData.length > 5 ? transferenciasData.length: 5}
-                rowsPerPageOptions={[5]}
+                pageSize={transferenciasData.length > 3 ? 3:transferenciasData.length}
+                rowsPerPageOptions={[3]}
             />
         </Box>
     )

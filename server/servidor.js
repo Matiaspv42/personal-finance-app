@@ -13,7 +13,7 @@ app.use(cors())
 
 app.use(express.json())
 
-const {loginUser, registerUser, findUser, depositarDinero, transferenciaDinero, getTransferencias} = require('./consultas')
+const {findUserbyId, registerUser, findUser, depositarDinero, transferenciaDinero, getTransferencias, registerRecordatorio, getRecordatorios, getRecordatoriosLimitados, gastoDinero, getGastosLimitados} = require('./consultas')
 const { restart } = require('nodemon')
 
 const port = 3001
@@ -22,6 +22,18 @@ app.listen(port, ()=>{
     console.log('Servidor andando en puerto '+port)
 })
 
+app.get('/usuarios', async(req,res)=>{
+    try {
+        if(req.query.id){
+            const {id} = req.query
+            const usuarioInfo = await findUserbyId({email: id})
+            console.log(usuarioInfo)
+            res.status(200).send(usuarioInfo)
+        }
+    } catch (error) {
+        
+    }
+})
 
 // registrar usuarios
 app.post('/usuarios', async (req,res)=>{
@@ -83,7 +95,8 @@ app.post("/depositos", async (req,res)=>{
 
 app.get("/transferencias", async (req,res)=>{
     try {
-        const transferencias = await getTransferencias()
+        const {id} = req.query
+        const transferencias = await getTransferencias(id)
         console.log('sending transferencia data')
         res.status(200).send(transferencias)
     } catch (error) {
@@ -95,6 +108,63 @@ app.post("/transferencias", async (req,res)=>{
     try {
         const dataTransferencia = {emisor: req.body.transferencia.envia, receptor: req.body.transferencia.recibe, dinero: req.body.transferencia.dinero, id: req.body.user.id}
         const respuesta = await transferenciaDinero(dataTransferencia)
+        if(respuesta) res.status(200).send('transferencia realizada')
+        else res.status(404).send('hubo un problema')
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+app.get("/recordatorios", async (req,res)=>{
+    try {
+        const {id} = req.query
+        if(req.query.limit){
+            const {limit} = req.query
+            const recordatorios = await getRecordatoriosLimitados(id, limit)
+            console.log(recordatorios)
+            res.status(200).send(recordatorios)
+        }
+        const recordatorios = await getRecordatorios(id)
+        res.status(200).send(recordatorios)
+    } catch (error) {
+        
+    }
+})
+
+app.post("/recordatorios", async(req,res)=>{
+    try {
+        const {recordatorioData, user, fecha} = req.body
+        console.log(fecha)
+        const recordatorios = {fecha , descripcion: recordatorioData.descripcion, id_usuario: user.id, titulo: recordatorioData.titulo}
+        const respuesta = await registerRecordatorio(recordatorios)
+        if(respuesta){
+            res.status(200).send('recordatorio agregado')
+        }
+    } catch (error) {
+        
+    }
+})
+app.get("/gastos", async (req,res)=>{
+    try {
+        const {id} = req.query
+        if(req.query.limit){
+            const {limit} = req.query
+            const gastos = await getGastosLimitados(id, limit)
+            console.log(gastos)
+            res.status(200).send(gastos)
+        }
+        // const gastos = await getGastos(id)
+        // res.status(200).send(gastos)
+    } catch (error) {
+        
+    }
+})
+
+app.post("/gastos", async (req,res)=>{
+    try {
+        console.log(req.body)
+        const dataGasto = {titulo: req.body.gasto.titulo, chauchera_gastada: req.body.gasto.chaucheraGasto, dinero: req.body.gasto.dinero, id_usuario: req.body.user.id}
+        const respuesta = await gastoDinero(dataGasto)
         if(respuesta) res.status(200).send('transferencia realizada')
         else res.status(404).send('hubo un problema')
     } catch (error) {
