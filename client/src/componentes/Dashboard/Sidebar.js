@@ -16,9 +16,9 @@ export default function Sidebar(){
                     style={({ isActive }) => ({ backgroundColor: isActive ? "#F6FBF8" : "#E7EBF0" })}
                     >Recordatorios</NavLink>
     
-                    <NavLink to='historial'
+                    {/* <NavLink to='historial'
                     style={({ isActive }) => ({ backgroundColor: isActive ? "#F6FBF8" : "#E7EBF0" })}
-                    >Historial</NavLink>
+                    >Historial</NavLink> */}
 
                     
                 {/* <li>

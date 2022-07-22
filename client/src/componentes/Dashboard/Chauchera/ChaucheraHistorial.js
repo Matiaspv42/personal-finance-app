@@ -1,36 +1,46 @@
 import { Box } from "@mui/system"
 import { DataGrid } from "@mui/x-data-grid"
-
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
     {
-      field: 'firstName',
-      headerName: 'First name',
+      field: 'categoria_emisora',
+      headerName: 'Emisor',
       width: 150,
-      editable: true,
+      editable: false,
     },
     {
-      field: 'lastName',
-      headerName: 'Last name',
+      field: 'categoria_destino',
+      headerName: 'Receptor',
       width: 150,
-      editable: true,
+      editable: false,
     },
     {
-      field: 'age',
-      headerName: 'Age',
+      field: 'cantidad_dinero',
+      headerName: 'Monto',
       type: 'number',
       width: 110,
-      editable: true,
+      editable: false,
     },
+    // {
+    //   field: 'fullName',
+    //   headerName: 'Full name',
+    //   description: 'This column has a value getter and is not sortable.',
+    //   sortable: false,
+    //   width: 160,
+    //   valueGetter: (params) =>
+    //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    // },
     {
-      field: 'fullName',
-      headerName: 'Full name',
+      field: 'fecha',
+      headerName: 'Fecha',
       description: 'This column has a value getter and is not sortable.',
       sortable: false,
       width: 160,
-      valueGetter: (params) =>
-        `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+      // valueGetter: (params) =>
+      //   `${params.row.firstName || ''} ${params.row.lastName || ''}`,
     },
   ];
   
@@ -47,14 +57,26 @@ const columns = [
   ];
 
 export default function ChaucheraHistorial(){
+  const [transferenciasData, setData] = useState([])
+    // const getTransferencias = async () =>{
+    //   const data = await axios.get("http://localhost:3001/transferencias")
+    //   const transferencias = data.data
+    //   console.log(data)
+    //   setData([...data.data])
+    //   console.log(transferenciasData)
+    // }
+    useEffect( async () => { 
+      const data = await axios.get("http://localhost:3001/transferencias")
+      setData([...data.data])
+    },[])
 
-    
+    console.log(transferenciasData)
     return(
         <Box sx={{ height: 400, width: '100%' }}>
             <DataGrid
-                rows={rows}
+                rows={transferenciasData}
                 columns={columns}
-                pageSize={5}
+                pageSize={transferenciasData.length > 5 ? transferenciasData.length: 5}
                 rowsPerPageOptions={[5]}
             />
         </Box>

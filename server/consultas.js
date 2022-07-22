@@ -56,8 +56,77 @@ const loginUser = async (user) =>{
     }
 }
 
+const depositarDinero = async (transferencia) =>{
+    const {categoria, dinero, id_usuario} = transferencia
+
+    const registrarTransferencia = {
+        text: "INSERT INTO transsacciones(fecha, cantidad_dinero, categoria_destino, id_usuario) values (NOW(), $1, $2, $3)",
+        values: [dinero, categoria, id_usuario]
+    }
+    const actualizarBalance = {
+        text: `UPDATE usuarios set balance_${categoria} = balance_${categoria} + $1 where id = $2`,
+        values: [dinero, id_usuario]
+    }
+    try {
+        await pool.query('BEGIN');
+        await pool.query(registrarTransferencia);
+        await pool.query(actualizarBalance);
+        await pool.query('COMMIT');
+        return true
+    } catch (error) {
+        await pool.query('ROLLBACK');
+        console.log(error);
+        throw error
+    }
+}
+
+const transferenciaDinero = async (transferencia) =>{
+    const {emisor, receptor, dinero, id} = transferencia
+    console.log(emisor, receptor)
+    const agregarTransferencia ={
+        text: "INSERT INTO transsacciones (categoria_emisora, categoria_destino, cantidad_dinero, id, fecha) values ($1, $2, $3, $4 ,NOW())",
+        values: [emisor, receptor, dinero, id]
+    };
+    const actualizarDatosEmisor = {
+        text: `UPDATE usuarios set balance_${emisor} = balance_${emisor} - $1 where id = $2`,
+        values: [dinero, id]
+    };
+    const actualizarDatosReceptor = {
+        text: `UPDATE usuarios set balance_${receptor} = balance_${receptor} + $1 where id = $2`,
+        values: [dinero, id]
+    };
+    try {
+        await pool.query('BEGIN');
+        await pool.query(agregarTransferencia);
+        await pool.query(actualizarDatosEmisor);
+        await pool.query(actualizarDatosReceptor);
+        await pool.query('COMMIT');
+        return true
+    } catch (error) {
+        await pool.query('ROLLBACK');
+        console.log(error);
+        throw error
+    }
+}
+
+const getTransferencias = async () =>{
+    const query = {
+        text: "select * from transsacciones"
+    }
+    try {
+        const {rows} = await pool.query(query);
+        return rows
+    } catch (error) {
+        console.log(error);
+        throw error
+    }
+}
+
 module.exports = {
     registerUser,
     loginUser,
-    findUser
+    findUser,
+    depositarDinero,
+    transferenciaDinero,
+    getTransferencias
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './recordatorios.css'
 // import { DateTimePicker, KeyboardDateTimePicker } from "@material-ui/pickers";
 import { FormGroup, FormControlLabel, Checkbox, Button, Box } from "@mui/material";
 import { DataGrid } from '@mui/x-data-grid';
@@ -88,14 +89,14 @@ export default function Recordatorios(){
                 onChange={handleChange}
                 inputProps={{ 'aria-label': 'controlled' }}
                 />} label="Email" />
-                <FormControlLabel control={<Checkbox
+                {/* <FormControlLabel control={<Checkbox
                 checked={checked}
                 color="success"
                 onChange={handleChange}
                 inputProps={{ 'aria-label': 'controlled' }}
-                />} label="Notificación" />
+                />} label="Notificación" /> */}
             </FormGroup>
-            <Button variant="contained">Enviar</Button>
+            <Button variant="contained">Agregar</Button>
             </div>
 
             <div className="tableRecordatorios">

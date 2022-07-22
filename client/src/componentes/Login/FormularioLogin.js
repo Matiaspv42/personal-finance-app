@@ -5,16 +5,17 @@ import AuthContext from "../../AuthContext";
 import { Navigate } from 'react-router-dom';
 
 export default function FormularioDeLogin(){
-    const {token, setToken, login, setLogin, user, setUser} = useContext(AuthContext)
+    const {token, setToken, login, setLogin, user, setUser, chauchera, setChauchera} = useContext(AuthContext)
     
     const handleLogin = async() => {
         try {
             const res = await axios.post("http://localhost:3001/login", user)
-            console.log(res)
             setToken(res.data.token)
             setLogin(true)
+            user['id'] = res.data.id
+            setUser({...user})
+            console.log(user)
             localStorage.setItem('token', 'Bearer '+ res.data.token)
-            console.log(token)
             alert(`Bienvenido`)
 
         } catch (error) {

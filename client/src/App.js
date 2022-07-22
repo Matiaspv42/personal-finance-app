@@ -16,12 +16,12 @@ import AuthContext from './AuthContext';
 function App() {
   const [token, setToken] = useState('');
   const [login, setLogin] = useState(false)
-
+  const [chauchera, setChauchera] = useState({});
   const [user, setUser] = useState({});
 
   return (
         <div className="App">
-        <AuthContext.Provider value={{token, setToken, login, setLogin, user, setUser}}>
+        <AuthContext.Provider value={{token, setToken, login, setLogin, user, setUser, chauchera, setChauchera}}>
           <BrowserRouter>
             <Navbar/>
             <Routes>
