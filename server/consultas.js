@@ -1,5 +1,7 @@
 const {Pool} = require('pg')
 
+require('dotenv').config()
+
 const config = {
     user: 'postgres',
     host:'localhost',
@@ -7,6 +9,19 @@ const config = {
     port:5432,
     database:'chauchera',
 }
+// const config = {
+//     user: process.env.USER ,
+//     host: process.env.HOST,
+//     password: process.env.PASSWORD,
+//     port: process.env.PORT_DATABASE,
+//     database: process.env.DATABASE,
+//     // esto es para heroku
+//     ssl: {
+//         rejectUnauthorized:false
+//     }
+// }
+
+
 
 const pool = new Pool(config)
 

@@ -17,7 +17,7 @@ const {findUserbyId, registerUser, findUser, depositarDinero, transferenciaDiner
 const {enviarMail} = require('./recordatorios')
 
 
-const port = 3001
+const port = process.env.PORT ||  3001
 
 app.listen(port, ()=>{
     console.log('Servidor andando en puerto '+port)

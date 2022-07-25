@@ -19,7 +19,7 @@ export default function UltimosRecodatorios(){
     useEffect( async () => { 
       const gastosHistorial = await axios.get(`http://localhost:3001/gastos?id=${user.id}&limit=3`)
       setGastosHistorial([...gastosHistorial.data.slice(0,3)])
-    },[])
+    },[user])
     console.log(gastosHistorial)
     return(
         <TableContainer component={Paper}>

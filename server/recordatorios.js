@@ -1,6 +1,8 @@
 const nodemailer = require('nodemailer')
 const schedule = require('node-schedule');
 
+require('dotenv').config()
+
 
 const enviarMail = async (data) => {
     // const {dateFromDatabase} = data
@@ -21,8 +23,7 @@ const enviarMail = async (data) => {
             service: "gmail",
             auth:{
                 user: 'chaucherarecordatorios@gmail.com',
-                pass: 'tnnnunajaldfgawy',
-    
+                pass: process.env.PASSWORD_MAIL,
             }
         })
         transporter.sendMail(mailOptions, (error, info) => {

@@ -28,7 +28,7 @@ export default function UltimosRecodatorios(){
     useEffect( async () => { 
       const recordatoriosHistorial = await axios.get(`http://localhost:3001/recordatorios?id=${user.id}&limit=3`)
       setRecodatorioHistorial([...recordatoriosHistorial.data.slice(0,3)])
-    },[])
+    },[user])
     return(
         <TableContainer component={Paper}>
       <Table size="small" aria-label="a dense table">

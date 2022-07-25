@@ -17,7 +17,7 @@ export default function Resumen(){
       const data = await axios.get(`http://localhost:3001/usuarios?id=${user.id}`)
       setDatosUsuario([...data.data])
       
-    },[])
+    },[user])
     return(
         <Box sx={{ flexGrow: 1 }}>
             <Grid container rowSpacing={1} columnSpacing={1}>

@@ -6,7 +6,6 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Doughtnut(props){
     const {balance_ahorros, balance_alimentos, balance_deudas, balance_otros} = props.datosUsuario || {}
-    console.log(props)
     const data = {
         labels: ['Ahorros', 'Deudas', 'Alimentos', 'Otros'],
         datasets: [
@@ -35,7 +34,7 @@ export default function Doughtnut(props){
         plugins: {
           title:{
             display: true,
-            text: 'Chauchera Mensual',
+            text: 'Balance total',
             font: {
               size:34
             },
