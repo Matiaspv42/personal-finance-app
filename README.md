@@ -1,7 +1,7 @@
 ## Personal finances web application
 # Chauchera
 
-The idea behind this web application is to allow the user to have and control a centralized **Chauchera** (a wallet) where you can see and record transactions. Chauchera also allows you to schedule mails in order to never miss a bill (like your telephone bill).
+The idea behind this web application is to allow the user to have and control a centralized **Chauchera** (a wallet) where you can see and record your transactions. Chauchera also allows you to schedule mails in order to never miss a bill (like your telephone bill).
 
 Before going in a tour through the website let me tell you about the technologies we used here. 
 
@@ -49,6 +49,6 @@ In this section we can add reminders and choose how we want to get it, at this p
 
 ## Summary
 
-This project was presented as my final project in DesafioLatam, it was a blast to work on it and I'm certain it was real opportunities to be adopted. At this point I'm interested in working on it to become fully usable as a mobile website but also I'm thinking in learn React Native and go with a full on mobile app.
+This project was presented as my final project in DesafioLatam, it was a blast to work on it and I'm certain it has real opportunities to be adopted. At this point I'm interested in working on it to become fully usable as a mobile website but also I'm thinking in learn React Native and go with a full on mobile app.
 
 If you are interested in working on this website or helping, hit me up! I have a lot of ideas and we can make something nice!
