@@ -1,4 +1,7 @@
 ## Personal finances web application
+
+Comentario: Esta página estaba deployada con Heroku pero debido a los cambios en sus tarifas estoy buscando dónde volver a deployarla 👀
+
 # Chauchera
 
 The idea behind this web application is to allow the user to have and control a centralized **Chauchera** (a wallet) where you can see and record your transactions. Chauchera also allows you to schedule mails in order to never miss a bill (like your telephone bill).
